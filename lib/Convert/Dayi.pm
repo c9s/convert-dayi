@@ -110,7 +110,7 @@ sub from_ascii {
         if( defined $WORDS_REV{$_} ) {
             $out .= $WORDS_REV{$_};
         }
-        elsif( defined $WORDS_REV{$_} ) {
+        elsif( defined $WORDS_REV{$_ . '1' } ) {
             $out .= $WORDS_REV{$_ . '1'};  # try index 1
         }
         else {
