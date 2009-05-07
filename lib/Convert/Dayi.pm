@@ -12,11 +12,11 @@ Convert::Dayi - Dayi Convention Module
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 use Exporter;
 our @ISA = qw(Exporter);
 our @EXPORT_OK = qw(as_ascii as_dayi from_ascii);
@@ -36,6 +36,16 @@ for from_ascii function , you need to provide index (start from 1)
 
     print from_ascii('v db/')   # 大易  (if the word is not defined , select index 1 by default)
 
+to translate chinese from STDIN:
+
+    #!/usr/bin/env perl
+    use utf8;
+    use Convert::Dayi qw(as_ascii);
+    use Encode;
+    while( <STDIN> ) {
+        my $word = Encode::decode_utf8( $_ );
+        print as_ascii( $word );
+    }
 
 =head1 DESCRIPTION
 

@@ -2,7 +2,7 @@
 use lib 'lib';
 
 use utf8;
-use Test::More tests => 3;
+use Test::More tests => 4;
 
 BEGIN {
 	use_ok( 'Convert::Dayi' );
