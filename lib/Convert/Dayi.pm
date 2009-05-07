@@ -12,11 +12,11 @@ Convert::Dayi - Dayi Convention Module
 
 =head1 VERSION
 
-Version 0.02
+Version 0.03
 
 =cut
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 use Exporter;
 our @ISA = qw(Exporter);
 our @EXPORT_OK = qw(as_ascii as_dayi from_ascii);
@@ -126,11 +126,17 @@ sub as_dayi {
     my $out = '';
     while( $string =~ /(.)/g ) {
         my $word = $1;
-        my $keys = $WORDS{ $word } ;
-        for ( split //,$keys ) {
-            $out .= $KEYS{ $_ };
+
+        if( defined $WORDS{$word} ) {
+            my $keys = $WORDS{ $word } ;
+            for ( split //,$keys ) {
+                $out .= $KEYS{ $_ };
+            }
+            $out .= ' ';
         }
-        $out .= ' ';
+        else {
+            $out .= $word;
+        }
     }
     return $out;
 }
@@ -144,7 +150,12 @@ sub as_ascii {
     my $out = '';
     while( $string =~ /(.)/g ) {
         my $word = $1;
-        $out .= $WORDS{$word} . " ";
+        if( defined $WORDS{$word} ) {
+            $out .= $WORDS{$word} . " ";
+        }
+        else {
+            $out .= $word;
+        }
     }
     return $out;
 }
