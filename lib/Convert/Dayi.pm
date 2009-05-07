@@ -12,11 +12,11 @@ Convert::Dayi - Dayi Convention Module
 
 =head1 VERSION
 
-Version 0.03
+Version 0.04
 
 =cut
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 use Exporter;
 our @ISA = qw(Exporter);
 our @EXPORT_OK = qw(as_ascii as_dayi from_ascii);
@@ -110,8 +110,11 @@ sub from_ascii {
         if( defined $WORDS_REV{$_} ) {
             $out .= $WORDS_REV{$_};
         }
-        else {
+        elsif( defined $WORDS_REV{$_} ) {
             $out .= $WORDS_REV{$_ . '1'};  # try index 1
+        }
+        else {
+            $out .= $_;
         }
     }
     return $out;
